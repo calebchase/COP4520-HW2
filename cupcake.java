@@ -84,7 +84,7 @@ class Leader implements Runnable {
             // the leader was able to enter for the first time
             if (firstEnter) {
                 leaderCount.incrementAndGet();
-                isCupcake.set(false);
+                firstEnter = false;
             }
 
             System.out.println("Leader sees cupcake: " + isCupcake.get());

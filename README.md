@@ -39,11 +39,11 @@ a. If this is the first time entering and there is a cupcake: eat cupcake
 
 The idea behind this algorithm is that a leader is tasked to keep track of the times he finds missing cakes. Each missing cake represents the first time a non-leader enters and eats a cake. This is the case because non-leaders only eat a cake if it is their first and never request a new cake. Therefore, if a leader finds a missing cake he knows that a non-leader has entered for the first time and no other guest has interfered with this information.
 
-It is important to note that all guests have entered but it is unknown to the leader if this is the cases. For example the last guest to enter eats the cake, making it their first time. However, if the party ends before the leader can go back in a see the missing cake. In this cases, the leader does not know that all guests have entered. 
+It is important to note that all guests could have entered but it is unknown to the leader. For example the last guest to enter eats the cake, making it their first time. However, if the party ends before the leader can go back in a see the missing cake. In this cases, the leader does not know that all guests have entered. 
 
 ### Implementation
 
-For the implementation, the java `ExecutorService` is used to manage threads. The number of threads(guests) is specified by the user. Due to the nature of the program, performance is not a huge concern as it is heavily dependent on frequent user input. The program was tested using sample user input.
+For the implementation, the java `ExecutorService` is used to manage threads. The number of threads(guests) is specified by the user. The implementation strictly follows the algorithm described. Due to the nature of the program, performance is not a huge concern as it is heavily dependent on frequent user input. The program was tested by using sample user input.
 
 ## Problem 1 Explanation 
 
@@ -51,8 +51,8 @@ For the implementation, the java `ExecutorService` is used to manage threads. Th
 1. The guests do not need to enter the queue right away
 2. The guests in the queue enter the room as soon as they can
 3. The guests do not need to leave the room right away
-4. The guests will wait and then enter the queue until the user terminates the program
-5. A guest my only occupy one position in the queue at a time
+4. The guests will wait and then re-enter the queue until the user terminates the program
+5. A guest may only occupy one position in the queue at a time
 
 ### Algorithm Implemented
 I chose to implement algorithm 3: "The third strategy would allow the quests to line in a queue. Every guest exiting the room was responsible to notify the guest standing in front of the queue that the showroom is available. Guests were allowed to queue multiple times"
@@ -65,6 +65,6 @@ One down side for option 3 is that guests need to form and manage a queue. For e
 
 ### Implementation
 
-For the implementation, the java `ExecutorService` is used to manage threads. The number of threads(guests) is specified by the user. At start the guests wait idly in the house for some time until they want to enter the queue for the room. This initial waiting is done by putting the guest thread to sleep for some time. When it is the guests turn to enter, they leave the queue and enter the room and signal that they are inside. They then idle in the room for a certain amount of time similar as before. This is once again done by putting the thread asleep. When the thread awakes, the guests exits an signals that the room is open. 
+For the implementation, the java `ExecutorService` is used to manage threads. The number of threads(guests) is specified by the user. At start the guests wait idly in the house for some time until they want to enter the queue for the room. This initial waiting is done by putting the guest thread to sleep for some time. When it is the guests turn to enter, they leave the queue and enter the room and signal that they are inside. They then idle in the room for a certain amount of time similar as before. This is once again done by putting the thread asleep. When the thread awakes, the guests exit and signals that the room is open. 
 
-When some action is taken by guests, information about the action and the current state of the program is printed to the user. To prevent any issues from data being modified during the print process, a lock is palaced prevent any guests from taking action. To test the program, sample input was provided and verified that the print statements were correct.
+When some action is taken by guests, information about the action and the current state of the program is printed to the user. To prevent any issues from data being modified during the print process, a lock is palaced prevent any guests from taking action. To test the program, sample input was provided and verified that the print statements were correct. Because threads are often put to sleep, performance is not a major concern. 
