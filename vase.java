@@ -67,9 +67,9 @@ class Guest implements Runnable {
         while(true) {
             // The guest does not enter the queue at first
             waitAround("house");
-            // The quests enters the queue
+            // The guest enters the queue
             enterQueue();
-            // The guests waits until it is there turn to enter
+            // The guest waits until it is their turn to enter
             tryEnterRoom();
         }
     }
@@ -97,7 +97,7 @@ class Guest implements Runnable {
         while(true) {
             // if they are not the first person or the room is not open, continue
             if (queue.peek() != name || !isRoomOpen.get()) continue;
-            // do not change data during print opperation
+            // do not change data during print operation
             if (printLock.get()) continue;
 
             // exit the queue and enter the room
