@@ -45,7 +45,7 @@ It is important to note that all guests could have entered but it is unknown to 
 
 For the implementation, the java `ExecutorService` is used to manage threads. The number of threads(guests) is specified by the user. The implementation strictly follows the algorithm described. Due to the nature of the program, performance is not a huge concern as it is heavily dependent on frequent user input. The program was tested by using sample user input.
 
-## Problem 1 Explanation 
+## Problem 2 Explanation 
 
 ### Assumptions
 1. The guests do not need to enter the queue right away
